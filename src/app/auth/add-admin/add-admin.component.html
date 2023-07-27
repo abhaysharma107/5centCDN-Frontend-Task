@@ -1,0 +1,67 @@
+<div class="d-flex align-items-center flex-column">
+    <h1 *ngIf="editing == false">Add Admin</h1>
+    <h1 *ngIf="editing == true">Edit Admin</h1>
+    <div class="d-flex w-20">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div>
+          <label for="email">Name</label>
+          <input
+            type="name"
+            id="name"
+            [formControl]="signupForm.controls.name"
+          />
+        </div>
+      <div>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          [formControl]="signupForm.controls.email"
+        />
+      </div>
+      <div *ngIf="editing == false">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          [formControl]="signupForm.controls.password"
+        />
+      </div>
+      <div>
+        <input type="checkbox" name="" id="" [formControl]="signupForm.controls.create">
+        <label for="password">Create</label>
+      </div>
+        <div>
+            <input type="checkbox" name="" id="" [formControl]="signupForm.controls.update">
+            <label for="password">Update</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" id="" [formControl]="signupForm.controls.delete">
+            <label for="password">Delete</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" id="" [formControl]="signupForm.controls.read">
+            <label for="password">Read</label>
+        </div>
+      <button type="submit" *ngIf="editing==false" [disabled]="!signupForm.valid" mat-raised-button color="primary" class="my-2">Add Admin</button>
+      <button type="submit" *ngIf="editing==true" [disabled]="!signupForm.valid" mat-raised-button color="primary" class="my-2">Update Admin</button>
+    </form>
+  </div>
+  </div>
+  
+  <div class="d-flex flex-wrap">
+    <div *ngFor="let admin of admins; let i=index">
+    <mat-card class="d-flex">
+        <mat-card-content>Name:{{admin.name}}</mat-card-content>
+        <mat-card-content>Email:{{admin.email}}</mat-card-content>
+        <mat-card-content>Create:{{admin.permission.create}}</mat-card-content>
+        <mat-card-content>Read:{{admin.permission.read}}</mat-card-content>
+        <mat-card-content>Update:{{admin.permission.update}}</mat-card-content>
+        <mat-card-content>Delete:{{admin.permission.delete}}</mat-card-content>
+        <div class="m-2">
+            <button mat-raised-button color="primary" (click)="edit(admin._id)">Edit</button>
+            <button mat-raised-button color="warn" class="mx-2" (click)="deleteAdmin(admin._id)">Delete</button>
+        </div>
+      </mat-card>
+    </div>
+  </div>

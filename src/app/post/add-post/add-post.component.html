@@ -1,0 +1,16 @@
+<div class="d-flex align-items-center flex-column">
+    <h1 *ngIf="editing == false">Add Post</h1>
+    <h1 *ngIf="editing == true">Edit Post</h1>
+    <div class="d-flex w-20">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <div>
+        <label for="title">Content</label>
+        <textarea id="title" [formControl]="postForm.controls.title"></textarea>
+        </div>
+        <div>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!postForm.valid" *ngIf="editing==false">Save</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!postForm.valid" *ngIf="editing==true">Update</button>
+        </div>
+    </form>
+    </div>
+</div>

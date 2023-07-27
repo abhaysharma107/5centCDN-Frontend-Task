@@ -1,0 +1,11 @@
+<div class="d-flex flex-wrap">
+    <div *ngFor="let post of posts; let i=index">
+    <mat-card class="d-flex">
+        <mat-card-content>Content:{{post.title}}</mat-card-content>
+        <div class="m-2">
+            <button mat-raised-button color="primary" (click)="edit(post._id, post.userId)">Edit</button>
+            <button mat-raised-button color="warn" class="mx-2" (click)="deletePost(post._id, post.userId)">Delete</button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
